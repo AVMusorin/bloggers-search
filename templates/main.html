@@ -1,0 +1,231 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+
+    <title>Bloggers search</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <h2>Поиск блогеров по параметрам</h2>
+    </div>
+    <div class="row">
+        <form action="" method="get">
+            <div class="form-group">
+                <label for="followers-count-min">Минимальное количество подписчиков</label>
+                <input type="number" class="form-control" id="followers-count-min"
+                       name="followers_count_min"
+                       aria-describedby="followers-count-max-description"
+                        {% if query.followers_count_min is not None %}
+                            {% if query.followers_count_min|first %}
+                       value="{{ query.followers_count_min|first }}"
+                            {% endif %}
+                        {% endif %}
+                       placeholder="Введите число">
+                <small id="followers-count-max-description" class="form-text text-muted">Укажите минимальное количество
+                    подписчиков блогера
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="followers-count-max">Максимальное количество подписчиков</label>
+                <input type="number" class="form-control" id="followers-count-max"
+                       name="followers_count_max"
+                        {% if query.followers_count_max is not None %}
+                            {% if query.followers_count_max|first %}
+                       value="{{ query.followers_count_max|first }}"
+                            {% endif %}
+                        {% endif %}
+                       aria-describedby="followers-count-max-description"
+                       placeholder="Введите число">
+                <small id="followers-count-max-description" class="form-text text-muted">Укажите максимальное количество
+                    подписчиков блогера
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="followings-count-min">Минимальное количество подписок</label>
+                <input type="number" class="form-control" id="followings-count-min"
+                       name="followings_count_min"
+                        {% if query.followings_count_min is not None %}
+                            {% if query.followings_count_min|first %}
+                       value="{{ query.followings_count_min|first }}"
+                            {% endif %}
+                        {% endif %}
+                       aria-describedby="followings-count-min-description"
+                       placeholder="Введите число">
+                <small id="followings-count-min-description" class="form-text text-muted">Укажите минимальное
+                    количество
+                    подписок блогера
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="followings-count-max">Максимальное количество подписок</label>
+                <input type="number" class="form-control" id="followings-count-max"
+                       name="followings_count_max"
+                        {% if query.followings_count_max is not None %}
+                            {% if query.followings_count_max|first %}
+                       value="{{ query.followings_count_max|first }}"
+                            {% endif %}
+                        {% endif %}
+                       aria-describedby="followings-count-max-description"
+                       placeholder="Введите число">
+                <small id="followings-count-max-description" class="form-text text-muted">Укажите максимальное
+                    количество подписок блогера
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="posts-count-min">Минимальное количество публикаций</label>
+                <input type="number" class="form-control" id="posts-count-min"
+                       name="posts_count_min"
+                        {% if query.posts_count_min is not None %}
+                            {% if query.posts_count_min|first %}
+                       value="{{ query.posts_count_min|first }}"
+                            {% endif %}
+                        {% endif %}
+                       aria-describedby="posts-count-min-description"
+                       placeholder="Введите число">
+                <small id="posts-count-min-description" class="form-text text-muted">Укажите минимальное число
+                    публикации
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="posts-count-max">Максимальное количество публикаций</label>
+                <input type="number" class="form-control" id="posts-count-min"
+                       name="posts_count_max"
+                        {% if query.posts_count_max is not None %}
+                            {% if query.posts_count_max|first %}
+                       value="{{ query.posts_count_max|first }}"
+                            {% endif %}
+                        {% endif %}
+                       aria-describedby="posts-count-max-description"
+                       placeholder="Введите число">
+                <small id="posts-count-max-description" class="form-text text-muted">Укажите максимальное число
+                    публикации
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="man-percent-min">Минимальная доля мужчин</label>
+                <input type="number" class="form-control" id="man-percent-min"
+                       name="man_percent_min"
+                        {% if query.man_percent_min is not None %}
+                            {% if query.man_percent_min|first %}
+                       value="{{ query.man_percent_min|first }}"
+                            {% endif %}
+                        {% endif %}
+                       aria-describedby="man-percent-min-description"
+                       placeholder="Введите число">
+                <small id="man-percent-min-description" class="form-text text-muted">Укажите минимальную долю
+                    подписчиков мужчин
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="man-percent-max">Максимальная доля мужчин</label>
+                <input type="number" class="form-control" id="man-percent-max"
+                       name="man_percent_max"
+                        {% if query.man_percent_max is not None %}
+                            {% if query.man_percent_max|first %}
+                       value="{{ query.man_percent_max|first }}"
+                            {% endif %}
+                        {% endif %}
+                       aria-describedby="man-percent-max-description"
+                       placeholder="Введите число">
+                <small id="man-percent-max-description" class="form-text text-muted">Укажите максимальную долю
+                    подписчиков мужчин
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="woman-percent-min">Минимальная доля женщин</label>
+                <input type="number" class="form-control" id="woman-percent-min"
+                       name="woman_percent_min"
+                        {% if query.woman_percent_min is not None %}
+                            {% if query.woman_percent_min|first %}
+                       value="{{ query.woman_percent_min|first }}"
+                            {% endif %}
+                        {% endif %}
+                       aria-describedby="woman-percent-min-description"
+                       placeholder="Введите число">
+                <small id="woman-percent-min-description" class="form-text text-muted">Укажите минимальную долю
+                    подписчиков женщин
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="woman-percent-max">Максимальная доля женщин</label>
+                <input type="number" class="form-control" id="woman-percent-max"
+                       name="woman_percent_max"
+                        {% if query.woman_percent_max is not None %}
+                            {% if query.woman_percent_max|first %}
+                       value="{{ query.woman_percent_max|first }}"
+                            {% endif %}
+                        {% endif %}
+                       aria-describedby="woman-percent-max-description"
+                       placeholder="Введите число">
+                <small id="woman-percent-max-description" class="form-text text-muted">Укажите максимальную долю
+                    подписчиков женщин
+                </small>
+            </div>
+            <button type="submit" class="btn btn-primary">Искать</button>
+        </form>
+    </div>
+    <div class="row"><br></div>
+    <div class="row">
+        <h3>Найдено {{ bloggers|length }} блогеров:</h3>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Username</th>
+                <th scope="col">Подписчики</th>
+                <th scope="col">Подписки</th>
+                <th scope="col">Посты</th>
+                <th scope="col">% мужчин</th>
+                <th scope="col">% женщин</th>
+                <th scope="col">% фейков</th>
+                <th scope="col">% комерч. аккаунтов</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for blogger in bloggers %}
+                <tr>
+                    <th scope="row">{{ blogger.id }}</th>
+                    <td>{{ blogger.name }}</td>
+                    <td><a href="{{ blogger.url }}">{{ blogger.username }}</a></td>
+                    <td>{{ blogger.followers_count }}</td>
+                    <td>{{ blogger.followings_count }}</td>
+                    <td>{{ blogger.posts_count }}</td>
+                    <td>{{ blogger.man_percent }}%</td>
+                    <td>{{ blogger.woman_percent }}%</td>
+                    <td>{{ blogger.bots_percent }}%</td>
+                    <td>{{ blogger.commerce_accounts_percent }}%</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

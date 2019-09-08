@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    container_name: bloggers_dev
+    image: bloggers-search
+    ports:
+      - "8000:8000"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ../static:/code/static
+      - ../templates:/code/templates
+      - ../db.sqlite3:/code/db.sqlite3

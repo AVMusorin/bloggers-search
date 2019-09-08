@@ -3,5 +3,6 @@ from api import views
 
 urlpatterns = [
     path('api/bloggers/<int:pk>/', views.blogger_detail),
-    path('api/bloggers', views.get_bloggers)
+    path('api/bloggers', views.get_bloggers),
+    path('', views.main)
 ]
