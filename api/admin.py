@@ -4,7 +4,7 @@ from api.models import Blogger
 
 
 class BloggerAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["name"]
 
 
 admin.site.register(Blogger, BloggerAdmin)
