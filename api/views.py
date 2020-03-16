@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 from rest_framework.decorators import api_view
 
-from api.models import Blogger
+from api.models import Blogger, FollowersAgeIntervals, Subject
 from api.serializers import BloggerSerializer
 
 
@@ -39,11 +39,9 @@ def main(request):
     shop_percent_max = params.get("shop_percent_max", None)
     bot_percent_max = params.get("bot_percent_max", None)
     income = params.get("income", None)
-    if income == "Уровень дохода":
-        income = None
     city = params.get("city", None)
-    if city == "Выберите город":
-        city = None
+    followers_age = params.get("followers_age", None)
+    subject = params.get("subject", None)
 
     if any([age_from, age_to,
             followings_count_min,
@@ -97,7 +95,15 @@ def main(request):
     if city:
         queryset = queryset.filter(city=city)
 
+    if followers_age:
+        queryset = queryset.filter(followers_age=followers_age)
+
+    if subject:
+        queryset = queryset.filter(subject=subject)
+
     return render(request, 'main.html', {
         'bloggers': queryset,
-        'query': dict(params)
+        'query': dict(params),
+        'followers_ages': FollowersAgeIntervals.objects.all(),
+        'subjects': Subject.objects.all()
     })

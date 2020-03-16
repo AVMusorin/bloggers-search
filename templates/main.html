@@ -178,7 +178,7 @@
                 <div class="col">
                     <label for="income">Доход</label>
                     <select id="income" name="income" class="custom-select">
-                        <option {% if query.income is None %} selected {% endif %}>Уровень дохода</option>
+                        <option {% if query.income is None %} selected {% endif %}></option>
                         <option {% if query.income|first == "LOW" %} selected {% endif %} value="LOW">Ниже среднего
                         </option>
                         <option {% if query.income|first == "MIDDLE" %} selected {% endif %} value="MIDDLE">Средний
@@ -192,7 +192,7 @@
                 <div class="col">
                     <label for="city">Город</label>
                     <select id="city" name="city" class="custom-select">
-                        <option {% if query.city is None %} selected {% endif %}>Выберите город</option>
+                        <option {% if query.city is None %} selected {% endif %}></option>
                         <option {% if query.city|first == "moscow" %} selected {% endif %} value="moscow">Москва
                         </option>
                         <option {% if query.city|first == "others" %} selected {% endif %} value="others">другие
@@ -202,11 +202,37 @@
                     </small>
                 </div>
             </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="followers_age">Возраст подписчиков</label>
+                    <select id="followers_age" name="followers_age" class="custom-select">
+                        <option {% if query.followers_age is None %} selected {% endif %}></option>
+                    {% for age in followers_ages %}
+                        <option {% if query.followers_age|first|slugify == age.id|slugify %} selected {% endif %} value="{{ age.id }}"> {{ age.name }}
+                        </option>
+                    {% endfor %}
+                    </select>
+                    <small id="followers_age-description" class="form-text text-muted">Выберите возраст подписчиков
+                    </small>
+                </div>
+                <div class="col">
+                    <label for="subject">Сфера деятельности</label>
+                    <select id="subject" name="subject" class="custom-select">
+                        <option {% if query.subject is None %} selected {% endif %}></option>
+                    {% for subject in subjects %}
+                        <option {% if query.subject|first|slugify == subject.id|slugify %} selected {% endif %} value="{{ subject.id }}">
+                            {{ subject.name }}</option>
+                    {% endfor %}
+                    </select>
+                    <small id="subject-description" class="form-text text-muted">Выберите сферу деятельности
+                    </small>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">Искать</button>
         </form>
     </div>
     <div class="row"><br></div>
-    {% if bloggers is not None %}
+    {% if bloggers is not None and bloggers|length > 0 %}
         <div class="row">
             <h3>Найдено {{ bloggers|length }} блогеров:</h3>
         </div>

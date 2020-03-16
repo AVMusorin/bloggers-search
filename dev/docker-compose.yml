@@ -3,10 +3,27 @@ services:
   web:
     container_name: bloggers_dev
     image: bloggers-search
+    build: ../
     ports:
       - "8000:8000"
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "sleep 5; python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ../static:/code/static
       - ../templates:/code/templates
-      - ../db.sqlite3:/code/db.sqlite3
+      - ../api:/code/api
+      - ../blogger_search:/code/blogger_search
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres_dev
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=developer
+      - POSTGRES_PASSWORD=developer
+      - POSTGRES_DB=developer
+    volumes:
+      - ./db:/var/lib/postgresql/data/pgdata
